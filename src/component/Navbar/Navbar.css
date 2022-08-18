@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  z-index: 100;
+  position: absolute; 
+  padding: 1em;
+}
+
+.header-title {
+  color: #e50914;
+  font-size: 40px;
+  font-weight: 20px;
+  cursor: pointer;
+}

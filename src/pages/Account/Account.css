@@ -1,0 +1,21 @@
+.account{
+    width:100%;
+    height:100%;
+}
+.account-img{
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    position: relative;
+}
+.account-content{
+    position: absolute;
+    color: #fff;
+    top:20%;
+    padding:1em;
+
+}
+.account-content h1{
+font-size: 40px;
+font-weight: bold;
+}
