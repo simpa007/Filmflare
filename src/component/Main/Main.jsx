@@ -1,22 +1,26 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import requests from "../../Request";
+// import requests from "../../Request";
 import "./Main.css";
-
-export default function Main() {
-  const [movies, setMovies] = useState([]);
-
+import { fetchArray } from "../../store/actions/actions";
+import { connect } from "react-redux";
+import axios from "axios";
+import requests from "../../Request";
+function Main(props) {
   useEffect(() => {
-    axios
-      .get(requests.requestPopular)
-      .then((response) => {
-        setMovies(response.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    props.onFetchData();
+    // axios
+    //   .get(requests.requestPopular)
+    //   .then((response) => {
+    //     setMovies(response.data.results);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, []);
-  const movie = movies[Math.floor(Math.random() * movies.length)];
+
+  let movies = props.array.results;
+  let movie = movies[Math.floor(Math.random() * movies.length + 1)];
+
   //console.log(movie);
   const truncateString = (str, num) => {
     if (str?.length > num) {
@@ -28,12 +32,15 @@ export default function Main() {
   return (
     <div className="main-container">
       <div className="container-img">
-        <div className="container-overlay"></div>
-        <img
-          className="img"
-          src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
-          alt={movie?.title}
-        />
+        <div>
+          <img
+            className="img"
+            src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
+            alt={movie?.title}
+          />
+          <div className="container-overlay"></div>
+        </div>
+
         <div className="content">
           <h1 className="content-header">{movie?.title}</h1>
           <div className="content-btn">
@@ -42,7 +49,7 @@ export default function Main() {
             </button>
             <button
               type="button"
-              class="btn btn-lg btn-outline-light py-2 px-5"
+              className="btn btn-lg btn-outline-light py-2 px-5"
             >
               Watch Later
             </button>
@@ -54,3 +61,17 @@ export default function Main() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    array: state.array,
+    error: state.error,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFetchData: () => dispatch(fetchArray()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

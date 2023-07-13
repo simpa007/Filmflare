@@ -15,7 +15,7 @@ export default function Navbar() {
     }
   };
   return (
-    <div>
+    <>
       <div className="header">
         <Link to="/" style={{ textDecoration: "none" }}>
           <h1 className="header-title">NETFLIX</h1>
@@ -51,6 +51,6 @@ export default function Navbar() {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }
