@@ -10,7 +10,6 @@ export default function ({ item }) {
   const { user } = UserAuth();
 
   const movieID = doc(db, "users", `${user?.email}`);
-  //console.log(movies);
   const saveShow = async () => {
     if (user?.email) {
       setLike(!like);
@@ -29,6 +28,7 @@ export default function ({ item }) {
   return (
     <div className="item-content">
       <img
+        className="img-feature"
         src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
         alt={item?.title}
       />

@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from "react";
-// import requests from "../../Request";
+import requests from "../../Request";
 import "./Main.css";
 import { fetchArray } from "../../store/actions/actions";
 import { connect } from "react-redux";
-import axios from "axios";
-import requests from "../../Request";
+
 function Main(props) {
   useEffect(() => {
     props.onFetchData();
-    // axios
-    //   .get(requests.requestPopular)
-    //   .then((response) => {
-    //     setMovies(response.data.results);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   }, []);
 
   let movies = props.array.results;
   let movie = movies[Math.floor(Math.random() * movies.length + 1)];
-
   //console.log(movie);
   const truncateString = (str, num) => {
     if (str?.length > num) {
