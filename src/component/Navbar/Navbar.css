@@ -9,8 +9,17 @@
 }
 
 .header-title {
-  color: #e50914;
-  font-size: 40px;
+  color: #bd8a1c;
+  font-size: 30px;
   font-weight: 20px;
   cursor: pointer;
+}
+.background{
+  background-color: #bd8a1c;
+  color: #fff;
+}
+.background:hover{
+  background-color: #f7d58b;
+  color: #000;
+  
 }
