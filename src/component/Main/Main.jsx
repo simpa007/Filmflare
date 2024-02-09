@@ -5,16 +5,17 @@ import axios from "axios";
 
 function Main() {
 	const [movies, setMovies] = useState([]);
-	useEffect(async () => {
-		try {
-			const res = await axios.get(requests.requestPopular);
-			setMovies(res.data.results);
-		} catch (error) {
-			console.log(error);
-		}
+	useEffect(() => {
+		axios
+			.get(requests.requestPopular)
+			.then((res) => {
+				setMovies(res.data.results);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}, []);
 
-	// console.log(movies);
 	let singleMovie = Math.floor(Math.random() * movies.length + 1);
 	let movie = movies[singleMovie];
 	const truncateString = (str, num) => {
